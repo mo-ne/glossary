@@ -2,16 +2,16 @@
 
 namespace App\Controller\Glossary;
 
-use App\Entity\Glossary;
+use App\Entity\GlossaryEntry;
 use App\Form\Type\DeleteEntryType;
-use App\Form\Type\GlossaryType;
+use App\Form\Type\GlossaryEntryType;
 use App\Repository\GlossaryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GlossaryController extends AbstractController
+class GlossaryEntryController extends AbstractController
 {
     /**
      * Renders form to create new entry.
@@ -23,10 +23,10 @@ class GlossaryController extends AbstractController
      */
     public function createNewEntry(Request $request): Response
     {
-        $glossary = new Glossary();
+        $glossaryEntry = new GlossaryEntry();
         $entityManager = $this->getDoctrine()->getManager();
 
-        $glossaryForm = $this->createForm(GlossaryType::class, $glossary);
+        $glossaryForm = $this->createForm(GlossaryEntryType::class, $glossaryEntry);
         $glossaryForm->handleRequest($request);
 
         if ($glossaryForm->isSubmitted() && $glossaryForm->isValid()) {
@@ -34,11 +34,11 @@ class GlossaryController extends AbstractController
             $term = $data->getTerm();
 
             $checkEntry = $this->getDoctrine()
-                ->getRepository(Glossary::class)
+                ->getRepository(GlossaryEntry::class)
                 ->findByTerm($term);
 
             if ($checkEntry == NULL) {
-                $entityManager->persist($glossary);
+                $entityManager->persist($glossaryEntry);
                 $entityManager->flush();
 
                 $this->addFlash(
@@ -65,27 +65,27 @@ class GlossaryController extends AbstractController
      * Renders form to edit entry by given term and updates term in database.
      *
      * @param Request $request
-     * @param Glossary $glossary
+     * @param GlossaryEntry $glossaryEntry
      * @param EntityManagerInterface $entityManager
      *
      * @return Response
      */
     public function editEntry(
-        Glossary $glossary,
+        GlossaryEntry $glossaryEntry,
         Request $request,
         EntityManagerInterface $entityManager
     ): Response {
-        $glossaryForm = $this->createForm(GlossaryType::class, $glossary);
+        $glossaryForm = $this->createForm(GlossaryEntryType::class, $glossaryEntry);
         $glossaryForm->handleRequest($request);
 
         if ($glossaryForm->isSubmitted() && $glossaryForm->isValid()) {
-            $entityManager->persist($glossary);
+            $entityManager->persist($glossaryEntry);
             $entityManager->flush();
 
             $this->addFlash('success', 'Entry updated!');
 
             return $this->redirectToRoute('edit', [
-                'id' => $glossary->getId()
+                'id' => $glossaryEntry->getId()
             ]);
         }
 
@@ -98,21 +98,21 @@ class GlossaryController extends AbstractController
      * Renders form to delete entry from database.
      *
      * @param Request $request
-     * @param Glossary $glossary
+     * @param GlossaryEntry $glossaryEntry
      * @param EntityManagerInterface $entityManager
      *
      * @return Response
      */
     public function deleteEntry(
-        Glossary $glossary,
+        GlossaryEntry $glossaryEntry,
         Request $request,
         EntityManagerInterface $entityManager
     ): Response {
-        $deleteEntryForm = $this->createForm(DeleteEntryType::class, $glossary);
+        $deleteEntryForm = $this->createForm(DeleteEntryType::class, $glossaryEntry);
         $deleteEntryForm->handleRequest($request);
 
         if ($deleteEntryForm->isSubmitted() && $deleteEntryForm->isValid()) {
-            $entityManager->remove($glossary);
+            $entityManager->remove($glossaryEntry);
             $entityManager->flush();
 
             $this->addFlash('success', 'Entry deleted!');
@@ -122,7 +122,7 @@ class GlossaryController extends AbstractController
 
         return $this->render('glossary/delete_entry.html.twig', [
             'delete_entry' => $deleteEntryForm->createView(),
-            'glossary' => $glossary
+            'glossary' => $glossaryEntry
         ]);
      }
 }

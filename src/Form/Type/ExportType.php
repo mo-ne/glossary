@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Glossary;
+use App\Entity\GlossaryEntry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
