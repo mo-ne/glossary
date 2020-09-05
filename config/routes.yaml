@@ -8,7 +8,7 @@ dashboard:
 
 glossary:
     path: /glossary
-    controller: App\Controller\Glossary\GlossaryController::createNewEntry
+    controller: App\Controller\Glossary\GlossaryEntryController::createNewEntry
 
 #   export:
 #      path: /export
@@ -24,11 +24,11 @@ find_entry:
 
 edit:
     path: /edit/{id}
-    controller: App\Controller\Glossary\GlossaryController::editEntry
+    controller: App\Controller\Glossary\GlossaryEntryController::editEntry
 
 delete:
     path: /delete/{id}
-    controller: App\Controller\Glossary\GlossaryController::deleteEntry
+    controller: App\Controller\Glossary\GlossaryEntryController::deleteEntry
 
 list:
     path: /list

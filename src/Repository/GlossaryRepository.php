@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\Glossary;
+use App\Entity\GlossaryEntry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
-* @method Glossary|null find($id, $lockMode = null, $lockVersion = null)
-* @method Glossary|null findOneBy(array $criteria, array $orderBy = null)
-* @method Glossary[]    findAll()
-* @method Glossary[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+* @method GlossaryEntry|null find($id, $lockMode = null, $lockVersion = null)
+* @method GlossaryEntry|null findOneBy(array $criteria, array $orderBy = null)
+* @method GlossaryEntry[]    findAll()
+* @method GlossaryEntry[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
 */
 class GlossaryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Glossary::class);
+        parent::__construct($registry, GlossaryEntry::class);
     }
 
     /**
@@ -24,9 +24,9 @@ class GlossaryRepository extends ServiceEntityRepository
      *
      * @param string $term Relates to field 'term' in database
      *
-     * @return ?Glossary
+     * @return ?GlossaryEntry
      */
-    public function findByTerm(string $term): ?Glossary
+    public function findByTerm(string $term): ?GlossaryEntry
     {
         $query = $this->createQueryBuilder('g')
             ->where('g.term = :term')
@@ -51,9 +51,9 @@ class GlossaryRepository extends ServiceEntityRepository
     /**
      * Returns all entries from database.
      *
-     * @return Glossary
+     * @return GlossaryEntry
      */
-    public function getAllEntries(): Glossary
+    public function getAllEntries(): GlossaryEntry
     {
         $query = $this->createQueryBuilder('g')
             ->select('g.id', 'g.term', 'g.description', 'g.relevance')

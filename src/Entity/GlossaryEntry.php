@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 * @ORM\Entity(repositoryClass=GlossaryRepository::class)
 * @UniqueEntity("id")
 */
-class Glossary
+class GlossaryEntry
 {
     /**
     * @ORM\Id()

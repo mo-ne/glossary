@@ -2,7 +2,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Glossary;
+use App\Entity\GlossaryEntry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +20,7 @@ class FindEntryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Glossary::class
+            'data_class' => GlossaryEntry::class
         ]);
     }
 }
