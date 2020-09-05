@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entries{% endblock %}
+
+{% block body %}
+
+{% include('Glossary/navigation.html.twig') %}
+
+<div class="container">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" text align="center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <h1>All Entries</h1>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Term</th>
+                <th>Description</th>
+                <th>Relevance</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>Edit!</th>
+                <th>Delete!</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.term }}</td>
+                    <td>{{ entry.description }}</td>
+                    <td>{{ entry.relevance }}</td>
+                    <td>{{ entry.creationDate|date('Y-m-d') }}</td>
+                    <td>{{ entry.changeDate|date('Y-m-d') }}</td>
+                    <td>
+                        <a href="{{ path('edit', {id: entry.id}) }}">
+                            {% include('Glossary/inc/icon_pencil_fill.html.twig') %}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('delete', {id: entry.id}) }}">
+                            {% include('Glossary/inc/icon_emoji_angry.html.twig') %}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

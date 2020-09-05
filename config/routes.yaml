@@ -1,3 +1,35 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\Dashboard\DashboardController::dashboard
+
+dashboard:
+    path: /dashboard
+    controller: App\Controller\Dashboard\DashboardController::dashboard
+
+glossary:
+    path: /glossary
+    controller: App\Controller\Glossary\GlossaryController::createNewEntry
+
+#   export:
+#      path: /export
+#      controller: App\Controller\Glossary\ExportController::export
+
+#   import:
+#       path: /import
+#       controller: App\Controller\Glossary\ImportController::import
+
+find_entry:
+    path: /find_entry
+    controller: App\Controller\Glossary\FindEntryController::findEntry
+
+edit:
+    path: /edit/{id}
+    controller: App\Controller\Glossary\GlossaryController::editEntry
+
+delete:
+    path: /delete/{id}
+    controller: App\Controller\Glossary\GlossaryController::deleteEntry
+
+list:
+    path: /list
+    controller: App\Controller\Glossary\ListController::list

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+
+{% block body %}
+
+{% include('Glossary/navigation.html.twig') %}
+
+<div class="container">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" text align="center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <h1>Search for Entry</h1>
+
+    {{ form_start(find_entry) }}
+
+        {{ form_widget(find_entry) }}
+
+        <input type="submit" value="Find entry!" class="btn btn-success">
+
+    {{ form_end(find_entry) }}
+</div>
+
+{% endblock %}

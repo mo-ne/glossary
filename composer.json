@@ -1,6 +1,12 @@
 {
+    "name": "mo-ne/glossary",
     "type": "project",
-    "license": "proprietary",
+    "description": "Just for fun glossary",
+    "keywords": [],
+    "authors": [
+        {
+            "name": "Monika Neumann"
+        },
     "require": {
         "php": ">=7.1.3",
         "ext-ctype": "*",
