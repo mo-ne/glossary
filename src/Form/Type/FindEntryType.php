@@ -13,7 +13,11 @@ class FindEntryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('term', TextType::class, ['help' => 'Enter the term you want to edit'])
+            ->add(
+                'term',
+                TextType::class,
+                ['help' => 'Enter the term you want to edit']
+            )
         ;
     }
 

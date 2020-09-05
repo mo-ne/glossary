@@ -21,8 +21,9 @@ class GlossaryEntryType extends AbstractType
                 'choices' => [
                     'high' => 1,
                     'medium' => 2,
-                    'low' => 3]])
-             ;
+                    'low' => 3
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
