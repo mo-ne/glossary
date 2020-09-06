@@ -36,7 +36,7 @@ class FindEntryController extends AbstractController
             }
 
             $this->addFlash(
-                'success',
+                'danger',
                 'The term \'' . $term . '\' does not exist in your glossary!'
             );
         }

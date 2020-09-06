@@ -38,7 +38,7 @@ class GlossaryEntryController extends AbstractController
                     return $this->redirectToRoute('glossary');
             } else {
                 $this->addFlash(
-                    'success',
+                    'danger',
                     'The term \'' . $glossaryForm->getData()->getTerm() . '\' already exists in your glossary.');
 
                 return $this->render('glossary/glossary.html.twig', [
