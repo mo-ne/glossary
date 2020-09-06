@@ -1,17 +1,19 @@
 <div class="container">
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success" text align="center">
-            {{ message }}
-        </div>
+    {% for label, messages in app.flashes(['success', 'danger']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}" text align="center">
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endfor %}
 
     <h1>{{ headline }}</h1>
 
-    {{ form_start(glossary) }}
+    {{ form_start(form) }}
 
-    {{ form_widget(glossary) }}
+    {{ form_widget(form) }}
 
     <input type="submit" value="{{ button_text }}" class="btn btn-success">
 
-    {{ form_end(glossary) }}
+    {{ form_end(form) }}
 </div>
