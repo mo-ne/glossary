@@ -5,8 +5,7 @@ namespace App\Controller\Glossary;
 use App\Entity\GlossaryEntry;
 use App\Form\Type\DeleteEntryType;
 use App\Form\Type\GlossaryEntryType;
-use App\Repository\GlossaryRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Model\GlossaryEntryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,36 +17,29 @@ class GlossaryEntryController extends AbstractController
      * Handles request to create new entry in database.
      *
      * @param Request $request
+     * @param GlossaryEntryServiceInterface $glossaryEntryService
      *
      * @return Response
      */
-    public function createNewEntry(Request $request): Response
-    {
+    public function createNewEntry(
+        Request $request,
+        GlossaryEntryServiceInterface $glossaryEntryService
+    ): Response {
         $glossaryEntry = new GlossaryEntry();
-        $entityManager = $this->getDoctrine()->getManager();
-
         $glossaryForm = $this->createForm(GlossaryEntryType::class, $glossaryEntry);
         $glossaryForm->handleRequest($request);
 
         if ($glossaryForm->isSubmitted() && $glossaryForm->isValid()) {
-            $data = $glossaryForm->getData();
-            $term = $data->getTerm();
 
-            $checkEntry = $this->getDoctrine()
-                ->getRepository(GlossaryEntry::class)
-                ->findByTerm($term);
-
-            if ($checkEntry == NULL) {
-                $entityManager->persist($glossaryEntry);
-                $entityManager->flush();
-
+            if ($glossaryEntryService->insertEntry($glossaryEntry)) {
                 $this->addFlash(
-                    'success', '\'' . $term . '\' has been added to your glossary!');
+                    'success', '\'' . $glossaryEntry->getTerm() . '\' has been added to your glossary!');
 
                     return $this->redirectToRoute('glossary');
             } else {
                 $this->addFlash(
-                    'success', 'The term \'' . $term . '\' already exists in your glossary.');
+                    'success',
+                    'The term \'' . $glossaryForm->getData()->getTerm() . '\' already exists in your glossary.');
 
                 return $this->render('glossary/glossary.html.twig', [
                     'glossary' => $glossaryForm->createView(),
@@ -66,27 +58,26 @@ class GlossaryEntryController extends AbstractController
      *
      * @param Request $request
      * @param GlossaryEntry $glossaryEntry
-     * @param EntityManagerInterface $entityManager
+     * @param GlossaryEntryServiceInterface $glossaryEntryService
      *
      * @return Response
      */
     public function editEntry(
-        GlossaryEntry $glossaryEntry,
         Request $request,
-        EntityManagerInterface $entityManager
+        GlossaryEntry $glossaryEntry,
+        GlossaryEntryServiceInterface $glossaryEntryService
     ): Response {
         $glossaryForm = $this->createForm(GlossaryEntryType::class, $glossaryEntry);
         $glossaryForm->handleRequest($request);
 
         if ($glossaryForm->isSubmitted() && $glossaryForm->isValid()) {
-            $entityManager->persist($glossaryEntry);
-            $entityManager->flush();
+            if ($glossaryEntryService->updateEntry($glossaryEntry)) {
+                $this->addFlash('success', 'Entry updated!');
 
-            $this->addFlash('success', 'Entry updated!');
-
-            return $this->redirectToRoute('edit', [
-                'id' => $glossaryEntry->getId()
-            ]);
+                return $this->redirectToRoute('edit', [
+                    'id' => $glossaryEntry->getId()
+                ]);
+            }
         }
 
         return $this->render('glossary/edit.html.twig', [
@@ -99,25 +90,24 @@ class GlossaryEntryController extends AbstractController
      *
      * @param Request $request
      * @param GlossaryEntry $glossaryEntry
-     * @param EntityManagerInterface $entityManager
+     * @param GlossaryEntryServiceInterface $glossaryEntryService
      *
      * @return Response
      */
     public function deleteEntry(
-        GlossaryEntry $glossaryEntry,
         Request $request,
-        EntityManagerInterface $entityManager
+        GlossaryEntry $glossaryEntry,
+        GlossaryEntryServiceInterface $glossaryEntryService
     ): Response {
         $deleteEntryForm = $this->createForm(DeleteEntryType::class, $glossaryEntry);
         $deleteEntryForm->handleRequest($request);
 
         if ($deleteEntryForm->isSubmitted() && $deleteEntryForm->isValid()) {
-            $entityManager->remove($glossaryEntry);
-            $entityManager->flush();
+            if ($glossaryEntryService->deleteEntry($glossaryEntry)) {
+                $this->addFlash('success', 'Entry deleted!');
 
-            $this->addFlash('success', 'Entry deleted!');
-
-            return $this->redirectToRoute('list');
+                return $this->redirectToRoute('list');
+            }
         }
 
         return $this->render('glossary/delete_entry.html.twig', [
