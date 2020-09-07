@@ -9,12 +9,12 @@ use Doctrine\ORM\EntityManagerInterface;
 class GlossaryEntryService implements GlossaryEntryServiceInterface
 {
     /**
-     * @var GlossaryRepository
+     * @var ?GlossaryRepository
      */
     private $glossaryRepository = null;
 
     /**
-     * @var EntityManagerInterface
+     * @var ?EntityManagerInterface
      */
     private $entityManager = null;
 

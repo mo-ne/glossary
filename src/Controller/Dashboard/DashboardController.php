@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class DashboardController extends AbstractController
 {
     /**
-     * Renders dashboard
+     * Renders dashboard.
      *
      * @return Response
      */
