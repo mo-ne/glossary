@@ -2,10 +2,6 @@ index:
     path: /
     controller: App\Controller\Dashboard\DashboardController::dashboard
 
-locale_dashboard:
-    path: /{_locale}/dashboard
-    controller: App\Controller\Dashboard\DashboardController::dashboard
-
 dashboard:
     path: /{_locale}/dashboard
     controller: App\Controller\Dashboard\DashboardController::dashboard
