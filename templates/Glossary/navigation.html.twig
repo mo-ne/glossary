@@ -16,10 +16,11 @@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href=""
-                    id="dropdown" data-toggle="dropdown" >{{ 'nav.language'|trans }}</a>
+                    id="dropdown" data-toggle="dropdown" >{{ 'nav.language'|trans }}
+                </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown">
                     {% for locale in availableLocales %}
-                    <a class="dropdown-item" href="{{ path('locale_dashboard', { _locale: locale }) }}">
+                    <a class="dropdown-item" href="{{ path('dashboard', { _locale: locale }) }}">
                        {{ locale|trans }}
                     </a><br>
                     {% endfor %}
@@ -28,8 +29,7 @@
        </ul>
     </div>
 </nav>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
 
 <br>
