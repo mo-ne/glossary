@@ -1,0 +1,37 @@
+entry:
+    term: Term
+    description: Description
+    relevance: Relevance
+    creation.date: Created
+    update.date: Updated
+    edit: Edit!
+    delete: Delete!
+
+en: English
+de: German
+
+nav.headline: Glossary
+nav.home: Dashboard
+nav.language: Language
+
+dashboard.headline: Dashboard
+dashboard.button.write.entry: Write a new entry!
+dashboard.button.edit: Edit your entries
+dashboard.button.list: Get a glossary list
+
+entry.page:
+   headline: Glossary
+   submit: Submit!
+
+find.entry:
+    headline: Find Entry
+    button: Find Entry!
+
+edit.entry:
+    headline: Edit your Entry!
+    button: Update!
+
+delete.entry:
+    headline: Delete Entry
+    demand: Are you sure you want to delete the following entry?
+    button: Delete!

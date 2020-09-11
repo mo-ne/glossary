@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}{{ 'dashboard.headline'|trans }}{% endblock %}
 
 {% block body %}
 
 {% include('Glossary/navigation.html.twig') %}
 
 <div class="container">
-    <h1>Glossary Dashboard</h1>
+    <h1>{{ 'dashboard.headline'|trans }}</h1>
 
     <br>
     <br>
 
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a href="{{ path('glossary') }}" class="btn btn-outline-secondary">Write a new Entry</a>
+            <a href="{{ path('glossary') }}" class="btn btn-outline-secondary">
+            {{ 'dashboard.button.write.entry'|trans }}</a>
         </li>
 
         <li>
@@ -22,7 +23,8 @@
         </li>
 
         <li class="nav-item">
-            <a href="{{ path('find_entry') }}" class="btn btn-outline-secondary">Edit your Entries</a>
+            <a href="{{ path('find_entry') }}" class="btn btn-outline-secondary">
+            {{ 'dashboard.button.edit'|trans }}</a>
         </li>
 
         <li>
@@ -30,7 +32,8 @@
         </li>
 
         <li class="nav-item">
-            <a href="{{ path('list') }}" class="btn btn-outline-secondary">Get a Glossary List</a>
+            <a href="{{ path('list') }}" class="btn btn-outline-secondary">
+            {{ 'dashboard.button.list'|trans }}</a>
         </li>
     </ul>
 </div>

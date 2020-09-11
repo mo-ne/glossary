@@ -7,13 +7,13 @@
 {% include('Glossary/navigation.html.twig') %}
 
 <div class="container">
-    <h1>Delete</h1>
+    <h1>{{ 'delete.entry.headline'|trans }}</h1>
     <br>
-    <p>Are you sure you want to delete the following entry?</p>
-
+    <p><b>{{ 'delete.entry.demand'|trans }}</b></p>
+    <br>
     <p>
-        Term: {{ glossary.term }}<br>
-        Description: {{ glossary.description }}
+        {{ 'entry.term'|trans }}: {{ glossary.term }}<br>
+        {{ 'entry.description'|trans }}: {{ glossary.description }}
     </p>
 
     {{ form_start(delete_entry) }}

@@ -1,0 +1,38 @@
+entry:
+    term: Begriff
+    description: Beschreibung
+    relevance: Relevanz
+    creation.date: Hinzugefügt
+    update.date: Bearbeitet
+    edit: Editieren!
+    delete: Löschen!
+
+
+de: Deutsch
+en: Englisch
+
+nav.headline: Glossar
+nav.home: Startseite
+nav.language: Sprache
+
+dashboard.headline: Startseite
+dashboard.button.write.entry: Neuer Eintrag
+dashboard.button.edit: Eintrag bearbeiten
+dashboard.button.list: Liste aller Einträge
+
+entry.page:
+    headline: Glossar
+    submit: Eintrag hinzufügen!
+
+find.entry:
+    headline: Eintrag suchen
+    button: Suchen!
+
+edit.entry:
+    headline: Eintrag bearbeiten
+    button: Eintrag bearbeiten!
+
+delete.entry:
+    headline: Eintrag löschen
+    demand: Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?
+    button: Löschen!

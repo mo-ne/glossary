@@ -9,6 +9,7 @@ use App\Model\GlossaryEntryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class GlossaryEntryController extends AbstractController
 {
@@ -59,20 +60,22 @@ class GlossaryEntryController extends AbstractController
      * @param Request $request
      * @param GlossaryEntry $glossaryEntry
      * @param GlossaryEntryServiceInterface $glossaryEntryService
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
     public function editEntry(
         Request $request,
         GlossaryEntry $glossaryEntry,
-        GlossaryEntryServiceInterface $glossaryEntryService
+        GlossaryEntryServiceInterface $glossaryEntryService,
+        TranslatorInterface $translator
     ): Response {
         $glossaryForm = $this->createForm(GlossaryEntryType::class, $glossaryEntry);
         $glossaryForm->handleRequest($request);
 
         if ($glossaryForm->isSubmitted() && $glossaryForm->isValid()) {
             if ($glossaryEntryService->updateEntry($glossaryEntry)) {
-                $this->addFlash('success', 'Entry updated!');
+                $this->addFlash('success', $translator->trans('entry.updated'));
 
                 return $this->redirectToRoute('edit', [
                     'id' => $glossaryEntry->getId()
