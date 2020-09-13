@@ -7,8 +7,8 @@ entry:
     edit: Edit!
     delete: Delete!
 
-en: English
-de: German
+language.en: English
+language.de: German
 
 nav.headline: Glossary
 nav.home: Dashboard
@@ -35,3 +35,11 @@ delete.entry:
     headline: Delete Entry
     demand: Are you sure you want to delete the following entry?
     button: Delete!
+
+flashmessage:
+    entry:
+        added: "%term% has been added to your glossary!"
+        updated: Entry updated!
+        deleted: Entry deleted!
+        already.existing: The term %term% already exists in your glossary.
+        not.found: The term %term% does not exist in your glossary.

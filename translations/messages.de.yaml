@@ -7,9 +7,8 @@ entry:
     edit: Editieren!
     delete: Löschen!
 
-
-de: Deutsch
-en: Englisch
+language.de: Deutsch
+language.en: Englisch
 
 nav.headline: Glossar
 nav.home: Startseite
@@ -34,5 +33,13 @@ edit.entry:
 
 delete.entry:
     headline: Eintrag löschen
-    demand: Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?
+    demand: Sicher, dass dieser Eintrag gelöscht werden soll?
     button: Löschen!
+
+flashmessage:
+    entry:
+        added: "%term% wurde zum Glossar hinzugefügt!"
+        updated: Der Eintrag wurde erfolgreich bearbeitet.
+        deleted: Der Eintrag wurde gelöscht!
+        already.existing: Es existiert schon ein Eintrag mit dem Begriff %term%.
+        not.found: Der Begriff %term% wurde nicht gefunden.
