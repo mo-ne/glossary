@@ -19,12 +19,14 @@ class GlossaryEntryController extends AbstractController
      *
      * @param Request $request
      * @param GlossaryEntryServiceInterface $glossaryEntryService
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
     public function createNewEntry(
         Request $request,
-        GlossaryEntryServiceInterface $glossaryEntryService
+        GlossaryEntryServiceInterface $glossaryEntryService,
+        TranslatorInterface $translator
     ): Response {
         $glossaryEntry = new GlossaryEntry();
         $glossaryForm = $this->createForm(GlossaryEntryType::class, $glossaryEntry);
@@ -34,13 +36,23 @@ class GlossaryEntryController extends AbstractController
 
             if ($glossaryEntryService->insertEntry($glossaryEntry)) {
                 $this->addFlash(
-                    'success', '\'' . $glossaryEntry->getTerm() . '\' has been added to your glossary!');
+                    'success', $translator->trans(
+                        'flashmessage.entry.added', [
+                            '%term%' => $glossaryEntry->getTerm()
+                        ]
+                    )
+                );
 
                     return $this->redirectToRoute('glossary');
             } else {
+
                 $this->addFlash(
-                    'danger',
-                    'The term \'' . $glossaryForm->getData()->getTerm() . '\' already exists in your glossary.');
+                    'danger', $translator->trans(
+                        'flashmessage.entry.already.existing', [
+                            '%term%' => $glossaryForm->getData()->getTerm()
+                        ]
+                    )
+                );
 
                 return $this->render('glossary/glossary.html.twig', [
                     'glossary' => $glossaryForm->createView(),
@@ -75,7 +87,10 @@ class GlossaryEntryController extends AbstractController
 
         if ($glossaryForm->isSubmitted() && $glossaryForm->isValid()) {
             if ($glossaryEntryService->updateEntry($glossaryEntry)) {
-                $this->addFlash('success', $translator->trans('entry.updated'));
+                $this->addFlash(
+                    'success',
+                    $translator->trans('flashmessage.entry.updated')
+                );
 
                 return $this->redirectToRoute('edit', [
                     'id' => $glossaryEntry->getId()
@@ -94,20 +109,25 @@ class GlossaryEntryController extends AbstractController
      * @param Request $request
      * @param GlossaryEntry $glossaryEntry
      * @param GlossaryEntryServiceInterface $glossaryEntryService
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
     public function deleteEntry(
         Request $request,
         GlossaryEntry $glossaryEntry,
-        GlossaryEntryServiceInterface $glossaryEntryService
+        GlossaryEntryServiceInterface $glossaryEntryService,
+        TranslatorInterface $translator
     ): Response {
         $deleteEntryForm = $this->createForm(DeleteEntryType::class, $glossaryEntry);
         $deleteEntryForm->handleRequest($request);
 
         if ($deleteEntryForm->isSubmitted() && $deleteEntryForm->isValid()) {
             if ($glossaryEntryService->deleteEntry($glossaryEntry)) {
-                $this->addFlash('success', 'Entry deleted!');
+                $this->addFlash(
+                    'success',
+                    $translator->trans('flashmessage.entry.deleted')
+                );
 
                 return $this->redirectToRoute('list');
             }

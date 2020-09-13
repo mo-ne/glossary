@@ -7,6 +7,7 @@ use App\Model\GlossaryEntryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FindEntryController extends AbstractController
 {
@@ -15,12 +16,14 @@ class FindEntryController extends AbstractController
      *
      * @param Request $request
      * @param GlossaryEntryServiceInterface $glossaryEntryService
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
     public function findEntry(
         Request $request,
-        GlossaryEntryServiceInterface $glossaryEntryService
+        GlossaryEntryServiceInterface $glossaryEntryService,
+        TranslatorInterface $translator
     ): Response {
         $findEntryForm = $this->createForm(FindEntryType::class);
         $findEntryForm->handleRequest($request);
@@ -37,7 +40,9 @@ class FindEntryController extends AbstractController
 
             $this->addFlash(
                 'danger',
-                'The term \'' . $term . '\' does not exist in your glossary!'
+                $translator->trans(
+                    'flashmessage.entry.not.found', ['%term%' => $term]
+                )
             );
         }
 
