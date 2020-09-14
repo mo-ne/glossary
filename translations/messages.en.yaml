@@ -1,7 +1,11 @@
 entry:
     term: Term
     description: Description
-    relevance: Relevance
+    relevance:
+        title: Relevance
+        1: high
+        2: medium
+        3: low
     creation.date: Created
     update.date: Updated
     edit: Edit!
@@ -43,3 +47,9 @@ flashmessage:
         deleted: Entry deleted!
         already.existing: The term %term% already exists in your glossary.
         not.found: The term %term% does not exist in your glossary.
+
+entry.list:
+    headline: All Entries
+
+form.help:
+    edit: Enter the term you want to edit.

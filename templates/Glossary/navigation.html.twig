@@ -8,6 +8,7 @@
             </li>
 
             {% set route = app.request.attributes.get('_route') %}
+            {% set route_params = app.request.attributes.get('_route_params') %}
             {% set param = app.request.get('id') %}
             {% set availableLocales=available_locales|split('|') %}
 
@@ -15,7 +16,7 @@
                 <a class="nav-link dropdown-toggle" href=""
                     id="dropdown" data-toggle="dropdown" >{{ 'nav.language'|trans }}
                 </a>
-                
+
                 <div class="dropdown-menu" aria-labelledby="dropdown">
                     {% for locale in availableLocales %}
                         {% if param is same as (null) %}
@@ -27,11 +28,23 @@
                                 {{ ('language.' ~ locale)|trans }}
                             </a>
                         {% endif %}
+
+                        <a class="dropdown-item" href="{{ path(route, route_params|merge(app.request.query.all)|merge({ _locale: locale})) }}">
+                            {{ ('language.' ~ locale)|trans }}
+                        </a>
                     {% endfor %}
+
+
                 </div>
             </li>
        </ul>
     </div>
 </nav>
+
+{# dump(route_params) }}
+{{ dump(route) }}
+{{ dump(app.request.query.all) #}
+
+
 <br>
 <br>

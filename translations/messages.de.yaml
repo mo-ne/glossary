@@ -1,7 +1,11 @@
 entry:
     term: Begriff
     description: Beschreibung
-    relevance: Relevanz
+    relevance:
+        title: Relevanz
+        1: hoch
+        2: mittel
+        3: niedrig
     creation.date: Hinzugefügt
     update.date: Bearbeitet
     edit: Editieren!
@@ -43,3 +47,9 @@ flashmessage:
         deleted: Der Eintrag wurde gelöscht!
         already.existing: Es existiert schon ein Eintrag mit dem Begriff %term%.
         not.found: Der Begriff %term% wurde nicht gefunden.
+
+entry.list:
+    headline: Alle Einträge
+
+form.help:
+    edit: Suchbegriff eingeben

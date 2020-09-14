@@ -3,26 +3,32 @@
 namespace App\Form\Type;
 
 use App\Entity\GlossaryEntry;
-use Symfony\Component\Form\AbstractType;
+//use Symfony\Component\Form\AbstractType;
+use App\Form\Type\AbstractEntryType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GlossaryEntryType extends AbstractType
+class GlossaryEntryType extends AbstractEntryType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('term', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('term', TextType::class, [
+                'label' => $this->getTranslator()->trans('entry.term')
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => $this->getTranslator()->trans('entry.description')
+            ])
             ->add('relevance', ChoiceType::class, [
                 'choices' => [
-                    'high' => 1,
-                    'medium' => 2,
-                    'low' => 3
-                ]
+                    $this->getTranslator()->trans('entry.relevance.1') => 1,
+                    $this->getTranslator()->trans('entry.relevance.2') => 2,
+                    $this->getTranslator()->trans('entry.relevance.3') => 3
+                ],
+                'label' => $this->getTranslator()->trans('entry.relevance.title')
             ]);
     }
 

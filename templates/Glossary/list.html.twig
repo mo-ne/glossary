@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Entries{% endblock %}
+{% block title %}{{ 'entry.list.headline'|trans }}{% endblock %}
 
 {% block body %}
 
@@ -13,7 +13,7 @@
         </div>
     {% endfor %}
 
-    <h1>All Entries</h1>
+    <h1>{{ 'entry.list.headline'|trans }}</h1>
     <br>
     <br>
     <table class="table">
@@ -21,7 +21,7 @@
             <tr>
                 <th>{{ 'entry.term'|trans }}</th>
                 <th>{{ 'entry.description'|trans }}</th>
-                <th>{{ 'entry.relevance'|trans }}</th>
+                <th>{{ 'entry.relevance.title'|trans }}</th>
                 <th>{{ 'entry.creation.date'|trans }}</th>
                 <th>{{ 'entry.update.date'|trans }}</th>
                 <th>{{ 'entry.edit'|trans }}</th>
@@ -33,7 +33,7 @@
                 <tr>
                     <td>{{ entry.term }}</td>
                     <td>{{ entry.description }}</td>
-                    <td>{{ entry.relevance }}</td>
+                    <td>{{ ('entry.relevance.' ~ entry.relevance)|trans }}</td>
                     <td>{{ entry.creationDate|date('Y-m-d') }}</td>
                     <td>{{ entry.changeDate|date('Y-m-d') }}</td>
                     <td>
