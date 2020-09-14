@@ -11,17 +11,20 @@ entry:
     edit: Editieren!
     delete: Löschen!
 
-language.de: Deutsch
-language.en: Englisch
+language:
+    de: Deutsch
+    en: Englisch
 
-nav.headline: Glossar
-nav.home: Startseite
-nav.language: Sprache
+nav:
+    headline: Glossar
+    home: Startseite
+    language: Sprache
 
-dashboard.headline: Startseite
-dashboard.button.write.entry: Neuer Eintrag
-dashboard.button.edit: Eintrag bearbeiten
-dashboard.button.list: Liste aller Einträge
+dashboard:
+    headline: Startseite
+    button.write.entry: Neuer Eintrag
+    button.edit: Eintrag bearbeiten
+    button.list: Liste aller Einträge
 
 entry.page:
     headline: Glossar

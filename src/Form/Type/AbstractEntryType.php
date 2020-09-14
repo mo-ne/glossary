@@ -13,7 +13,7 @@ class AbstractEntryType extends AbstractType
     private $translator;
 
     /**
-     * AbstractEntryType consructor.
+     * AbstractEntryType constructor.
      *
      * @param TranslatorInterface $translator
      *

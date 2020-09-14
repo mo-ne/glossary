@@ -8,15 +8,15 @@
                   integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         {% endblock %}
     </head>
+
     <body>
         {% block body %}
            {% include('Glossary/inc/flash_messages.html.twig') %}
         {% endblock %}
+
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         {% endblock %}
-
-
     </body>
 </html>

@@ -11,17 +11,20 @@ entry:
     edit: Edit!
     delete: Delete!
 
-language.en: English
-language.de: German
+language:
+    en: English
+    de: German
 
-nav.headline: Glossary
-nav.home: Dashboard
-nav.language: Language
+nav:
+    headline: Glossary
+    home: Dashboard
+    language: Language
 
-dashboard.headline: Dashboard
-dashboard.button.write.entry: Write a new entry!
-dashboard.button.edit: Edit your entries
-dashboard.button.list: Get a glossary list
+dashboard:
+    headline: Dashboard
+    button.write.entry: Write a new entry!
+    button.edit: Edit your entries
+    button.list: Get a glossary list
 
 entry.page:
    headline: Glossary

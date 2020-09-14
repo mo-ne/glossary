@@ -20,7 +20,7 @@ class ListController extends AbstractController
         $entries = $glossaryRepo->findAll();
 
         return $this->render('glossary/list.html.twig', [
-            'entries' => $entries,
+            'entries' => $entries
         ]);
     }
 }

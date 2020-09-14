@@ -4,7 +4,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('dashboard') }}">{{ 'nav.home'|trans }}</a>
+                <a class="nav-link" href="{{ path('dashboard') }}">
+                    {{ 'nav.home'|trans }}
+                </a>
             </li>
 
             {% set route = app.request.attributes.get('_route') %}
@@ -12,8 +14,8 @@
             {% set availableLocales=available_locales|split('|') %}
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href=""
-                    id="dropdown" data-toggle="dropdown" >{{ 'nav.language'|trans }}
+                <a class="nav-link dropdown-toggle" href="" id="dropdown" data-toggle="dropdown">
+                    {{ 'nav.language'|trans }}
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdown">
@@ -27,5 +29,6 @@
        </ul>
     </div>
 </nav>
+
 <br>
 <br>

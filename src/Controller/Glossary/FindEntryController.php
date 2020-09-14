@@ -40,9 +40,7 @@ class FindEntryController extends AbstractController
 
             $this->addFlash(
                 'danger',
-                $translator->trans(
-                    'flashmessage.entry.not.found', ['%term%' => $term]
-                )
+                $translator->trans('flashmessage.entry.not.found', ['%term%' => $term])
             );
         }
 

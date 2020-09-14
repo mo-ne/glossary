@@ -36,7 +36,8 @@ class GlossaryEntryController extends AbstractController
 
             if ($glossaryEntryService->insertEntry($glossaryEntry)) {
                 $this->addFlash(
-                    'success', $translator->trans(
+                    'success',
+                    $translator->trans(
                         'flashmessage.entry.added', [
                             '%term%' => $glossaryEntry->getTerm()
                         ]
@@ -45,9 +46,9 @@ class GlossaryEntryController extends AbstractController
 
                     return $this->redirectToRoute('glossary');
             } else {
-
                 $this->addFlash(
-                    'danger', $translator->trans(
+                    'danger',
+                    $translator->trans(
                         'flashmessage.entry.already.existing', [
                             '%term%' => $glossaryForm->getData()->getTerm()
                         ]
@@ -59,7 +60,6 @@ class GlossaryEntryController extends AbstractController
                 ]);
             }
         } else {
-
             return $this->render('glossary/glossary.html.twig', [
                 'glossary' => $glossaryForm->createView(),
             ]);

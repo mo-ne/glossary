@@ -15,11 +15,11 @@ class DeleteEntryType extends AbstractEntryType
         $builder
             ->add(
                 'term',
-                SubmitType::class,
-                ['label' => $this->getTranslator()->trans('entry.delete'),
-                'attr' => ['class' => 'btn btn-danger']]
-            )
-        ;
+                SubmitType::class, [
+                    'label' => $this->getTranslator()->trans('entry.delete'),
+                    'attr' => ['class' => 'btn btn-danger']
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Delete{% endblock %}
+{% block title %}{{ 'delete.entry.headline'|trans }}{% endblock %}
 
 {% block body %}
 
@@ -11,25 +11,23 @@
     <br>
     <p><b>{{ 'delete.entry.demand'|trans }}</b></p>
     <br>
-    <p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>{{ 'entry.term'|trans }}</th>
-                    <th>{{ 'entry.description'|trans }}</th>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ 'entry.term'|trans }}</th>
+                <th>{{ 'entry.description'|trans }}</th>
+            </tr>
+        </thead>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ glossary.term }}</td>
-                    <td>{{ glossary.description }}</td>
-
-                </tr>
-            </tbody>
-        </table>
-    </p>
+        <tbody>
+            <tr>
+                <td>{{ glossary.term }}</td>
+                <td>{{ glossary.description }}</td>
+            </tr>
+        </tbody>
+    </table>
     <br>
+
     {{ form_start(delete_entry) }}
 
     {{ form_widget(delete_entry) }}
