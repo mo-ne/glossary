@@ -19,32 +19,14 @@
 
                 <div class="dropdown-menu" aria-labelledby="dropdown">
                     {% for locale in availableLocales %}
-                        {% if param is same as (null) %}
-                            <a class="dropdown-item" href="{{ path(route, { _locale: locale }) }}">
-                                {{ ('language.' ~ locale)|trans }}
-                            </a>
-                        {% else %}
-                            <a class="dropdown-item" href="{{ path(route, { _locale: locale, id: param }) }}">
-                                {{ ('language.' ~ locale)|trans }}
-                            </a>
-                        {% endif %}
-
                         <a class="dropdown-item" href="{{ path(route, route_params|merge(app.request.query.all)|merge({ _locale: locale})) }}">
                             {{ ('language.' ~ locale)|trans }}
                         </a>
                     {% endfor %}
-
-
                 </div>
             </li>
        </ul>
     </div>
 </nav>
-
-{# dump(route_params) }}
-{{ dump(route) }}
-{{ dump(app.request.query.all) #}
-
-
 <br>
 <br>
