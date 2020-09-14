@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editor{% endblock %}
+{% block title %}{{ 'edit.entry.headline'|trans }}{% endblock %}
 
 {% block body %}
 
 {% include('Glossary/navigation.html.twig') %}
 
 {{ include('Glossary/form.html.twig', {
-    headline: 'Edit your Entry!',
-    button_text: 'Update!',
+    headline: 'edit.entry.headline',
+    button_text: 'edit.entry.button',
     form: glossary
 }) }}
 

@@ -3,11 +3,11 @@ index:
     controller: App\Controller\Dashboard\DashboardController::dashboard
 
 dashboard:
-    path: /dashboard
+    path: /{_locale}/dashboard
     controller: App\Controller\Dashboard\DashboardController::dashboard
 
 glossary:
-    path: /glossary
+    path: /{_locale}/glossary
     controller: App\Controller\Glossary\GlossaryEntryController::createNewEntry
 
 #   export:
@@ -19,17 +19,17 @@ glossary:
 #       controller: App\Controller\Glossary\ImportController::import
 
 find_entry:
-    path: /find_entry
+    path: /{_locale}/find_entry
     controller: App\Controller\Glossary\FindEntryController::findEntry
 
 edit:
-    path: /edit/{id}
+    path: /{_locale}/edit/{id}
     controller: App\Controller\Glossary\GlossaryEntryController::editEntry
 
 delete:
-    path: /delete/{id}
+    path: /{_locale}/delete/{id}
     controller: App\Controller\Glossary\GlossaryEntryController::deleteEntry
 
 list:
-    path: /list
+    path: /{_locale}/list
     controller: App\Controller\Glossary\ListController::list

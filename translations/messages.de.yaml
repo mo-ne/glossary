@@ -1,0 +1,58 @@
+entry:
+    term: Begriff
+    description: Beschreibung
+    relevance:
+        title: Relevanz
+        1: hoch
+        2: mittel
+        3: niedrig
+    creation.date: Hinzugefügt
+    update.date: Bearbeitet
+    edit: Editieren!
+    delete: Löschen!
+
+language:
+    de: Deutsch
+    en: Englisch
+
+nav:
+    headline: Glossar
+    home: Startseite
+    language: Sprache
+
+dashboard:
+    headline: Startseite
+    button.write.entry: Neuer Eintrag
+    button.edit: Eintrag bearbeiten
+    button.list: Liste aller Einträge
+
+entry.page:
+    headline: Glossar
+    submit: Eintrag hinzufügen!
+
+find.entry:
+    headline: Eintrag suchen
+    button: Suchen!
+
+edit.entry:
+    headline: Eintrag bearbeiten
+    button: Eintrag bearbeiten!
+
+delete.entry:
+    headline: Eintrag löschen
+    demand: Sicher, dass dieser Eintrag gelöscht werden soll?
+    button: Löschen!
+
+flashmessage:
+    entry:
+        added: "%term% wurde zum Glossar hinzugefügt!"
+        updated: Der Eintrag wurde erfolgreich bearbeitet.
+        deleted: Der Eintrag wurde gelöscht!
+        already.existing: Es existiert schon ein Eintrag mit dem Begriff %term%.
+        not.found: Der Begriff %term% wurde nicht gefunden.
+
+entry.list:
+    headline: Alle Einträge
+
+form.help:
+    edit: Suchbegriff eingeben

@@ -1,0 +1,58 @@
+entry:
+    term: Term
+    description: Description
+    relevance:
+        title: Relevance
+        1: high
+        2: medium
+        3: low
+    creation.date: Created
+    update.date: Updated
+    edit: Edit!
+    delete: Delete!
+
+language:
+    en: English
+    de: German
+
+nav:
+    headline: Glossary
+    home: Dashboard
+    language: Language
+
+dashboard:
+    headline: Dashboard
+    button.write.entry: Write a new entry!
+    button.edit: Edit your entries
+    button.list: Get a glossary list
+
+entry.page:
+   headline: Glossary
+   submit: Submit!
+
+find.entry:
+    headline: Find Entry
+    button: Find Entry!
+
+edit.entry:
+    headline: Edit your Entry!
+    button: Update!
+
+delete.entry:
+    headline: Delete Entry
+    demand: Are you sure you want to delete the following entry?
+    button: Delete!
+
+flashmessage:
+    entry:
+        added: "%term% has been added to your glossary!"
+        updated: Entry updated!
+        deleted: Entry deleted!
+        already.existing: The term %term% already exists in your glossary.
+        not.found: The term %term% does not exist in your glossary.
+
+entry.list:
+    headline: All Entries
+
+form.help:
+    edit: Enter the term you want to edit.
