@@ -9,7 +9,6 @@
 
             {% set route = app.request.attributes.get('_route') %}
             {% set route_params = app.request.attributes.get('_route_params') %}
-            {% set param = app.request.get('id') %}
             {% set availableLocales=available_locales|split('|') %}
 
             <li class="nav-item dropdown">
