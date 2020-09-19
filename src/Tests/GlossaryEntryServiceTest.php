@@ -53,21 +53,35 @@ class GlossaryEntryServiceTest extends TestCase
         $glossaryEntry->setTerm('Pandi');
         $glossaryEntry->setDescription('sweet');
 
-        $glossaryRepository = $this->createMock(GlossaryRepository::class);
-        $glossaryRepository
+        $glossaryRepository1 = $this->createMock(GlossaryRepository::class);
+        $glossaryRepository1
             ->expects($this->any())
             ->method('findByTerm')
             ->willReturn(null);
 
-        $manager = $this->createMock(EntityManagerInterface::class);
-        $manager
+        $glossaryRepository2 = $this->createMock(GlossaryRepository::class);
+        $glossaryRepository2
+            ->expects($this->any())
+            ->method('findByTerm')
+            ->willReturn($glossaryEntry);
+
+        $manager1 = $this->createMock(EntityManagerInterface::class);
+        $manager1
             ->expects($this->any())
             ->method('getRepository')
-            ->willReturn($glossaryRepository);
+            ->willReturn($glossaryRepository1);
 
+        $manager2 = $this->createMock(EntityManagerInterface::class);
+        $manager2
+            ->expects($this->any())
+            ->method('getRepository')
+            ->willReturn($glossaryRepository2);
 
-        $glossaryEntryService = new GlossaryEntryService($glossaryRepository, $manager);
-        $this->assertTrue($glossaryEntryService->insertEntry($glossaryEntry));
+        $glossaryEntryService1 = new GlossaryEntryService($glossaryRepository1, $manager1);
+        $this->assertTrue($glossaryEntryService1->insertEntry($glossaryEntry));
+
+        $glossaryEntryService2 = new GlossaryEntryService($glossaryRepository2, $manager2);
+        $this->assertFalse($glossaryEntryService2->insertEntry($glossaryEntry));
     }
 
     public function testUpdateEntry()
@@ -76,20 +90,34 @@ class GlossaryEntryServiceTest extends TestCase
         $glossaryEntry->setTerm('Pandi');
         $glossaryEntry->setDescription('sweet');
 
-        $glossaryRepository = $this->createMock(GlossaryRepository::class);
-        $glossaryRepository
+        $glossaryRepository1 = $this->createMock(GlossaryRepository::class);
+        $glossaryRepository1
             ->expects($this->any())
             ->method('findByTerm')
             ->willReturn($glossaryEntry);
 
-        $manager = $this->createMock(EntityManagerInterface::class);
-        $manager
+        $glossaryRepository2 = $this->createMock(GlossaryRepository::class);
+        $glossaryRepository2
+            ->expects($this->any())
+            ->method('findByTerm')
+            ->willReturn(null);
+
+        $manager1 = $this->createMock(EntityManagerInterface::class);
+        $manager1
             ->expects($this->any())
             ->method('getRepository')
-            ->willReturn($glossaryRepository);
+            ->willReturn($glossaryRepository1);
 
+        $manager2 = $this->createMock(EntityManagerInterface::class);
+        $manager2
+            ->expects($this->any())
+            ->method('getRepository')
+            ->willReturn($glossaryRepository2);
 
-        $glossaryEntryService = new GlossaryEntryService($glossaryRepository, $manager);
-        $this->assertTrue($glossaryEntryService->updateEntry($glossaryEntry));
+        $glossaryEntryService1 = new GlossaryEntryService($glossaryRepository1, $manager1);
+        $this->assertTrue($glossaryEntryService1->updateEntry($glossaryEntry));
+
+        $glossaryEntryService2 = new GlossaryEntryService($glossaryRepository2, $manager2);
+        $this->assertFalse($glossaryEntryService2->updateEntry($glossaryEntry));
     }
 }
