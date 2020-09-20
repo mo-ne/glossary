@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search{% endblock %}
+{% block title %}{{ 'find.entry.headline'|trans }}{% endblock %}
 
 {% block body %}
 
 {% include('Glossary/navigation.html.twig') %}
 
 {{ include('Glossary/form.html.twig', {
-    headline: 'Search for Entry',
-    button_text: 'Find entry!',
+    headline: 'find.entry.headline',
+    button_text: 'find.entry.button',
     form: find_entry
 }) }}
 

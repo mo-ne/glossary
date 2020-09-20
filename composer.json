@@ -6,7 +6,8 @@
     "authors": [
         {
             "name": "Monika Neumann"
-        },
+        }
+    ],
     "require": {
         "php": ">=7.1.3",
         "ext-ctype": "*",
@@ -52,7 +53,8 @@
         "symfony/stopwatch": "^4.4",
         "symfony/twig-bundle": "^4.4",
         "symfony/var-dumper": "^4.4",
-        "symfony/web-profiler-bundle": "^4.4"
+        "symfony/web-profiler-bundle": "^4.4",
+        "vimeo/psalm": "^3.15"
     },
     "config": {
         "preferred-install": {

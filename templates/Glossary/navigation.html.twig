@@ -1,12 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" >Glossary</a>
+    <a class="navbar-brand" >{{ 'nav.headline'|trans }}</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('dashboard') }}">Dashboard</a>
+                <a class="nav-link" href="{{ path('dashboard') }}">
+                    {{ 'nav.home'|trans }}
+                </a>
             </li>
-        </ul>
+
+            {% set route = app.request.attributes.get('_route') %}
+            {% set route_params = app.request.attributes.get('_route_params') %}
+            {% set availableLocales=available_locales|split('|') %}
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="dropdown" data-toggle="dropdown">
+                    {{ 'nav.language'|trans }}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                    {% for locale in availableLocales %}
+                        <a class="dropdown-item" href="{{ path(route, route_params|merge(app.request.query.all)|merge({ _locale: locale})) }}">
+                            {{ ('language.' ~ locale)|trans }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </li>
+       </ul>
     </div>
 </nav>
 

@@ -45,15 +45,15 @@ class GlossaryRepository extends ServiceEntityRepository
      */
     public function checkByTerm(string $term): bool
     {
-        return $this->findByTerm() !== null;
+        return $this->findByTerm($term) !== null;
     }
 
     /**
      * Returns all entries from database.
      *
-     * @return GlossaryEntry
+     * @return array
      */
-    public function getAllEntries(): GlossaryEntry
+    public function getAllEntries(): array
     {
         $query = $this->createQueryBuilder('g')
             ->select('g.id', 'g.term', 'g.description', 'g.relevance')

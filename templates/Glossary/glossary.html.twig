@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Glossary{% endblock %}
+{% block title %}{{ 'entry.page.headline'|trans }}{% endblock %}
 
 {% block body %}
 
 {% include('Glossary/navigation.html.twig') %}
 
 {{ include('Glossary/form.html.twig', {
-    headline: 'Glossary',
-    button_text: 'Submit!',
+    headline: 'entry.page.headline',
+    button_text: 'entry.page.submit',
     form: glossary
 }) }}
 
