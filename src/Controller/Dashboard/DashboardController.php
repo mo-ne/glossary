@@ -14,6 +14,6 @@ class DashboardController extends AbstractController
      */
     public function dashboard(): Response
     {
-        return $this->render('glossary/dashboard.html.twig');
+        return $this->render('Glossary/dashboard.html.twig');
     }
 }

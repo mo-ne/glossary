@@ -8,7 +8,7 @@
 
 <div class="container">
     {% for message in app.flashes('success') %}
-        <div class="alert alert-success" text align="center">
+        <div class="alert alert-success" align="center">
             {{ message }}
         </div>
     {% endfor %}
@@ -43,7 +43,7 @@
                             {% include('Glossary/inc/icon_pencil_fill.html.twig') %}
                         </a>
                     </td>
-                    
+
                     <td>
                         <a href="{{ path('delete', {id: entry.id}) }}">
                             {% include('Glossary/inc/icon_emoji_angry.html.twig') %}

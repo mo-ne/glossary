@@ -2,6 +2,7 @@
 
 namespace App\Controller\Glossary;
 
+use App\Entity\GlossaryEntry;
 use App\Form\Type\FindEntryType;
 use App\Model\GlossaryEntryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,21 +32,31 @@ class FindEntryController extends AbstractController
         if ($findEntryForm->isSubmitted() && $findEntryForm->isValid()) {
             $term = $findEntryForm->getData()->getTerm();
             $entry = $glossaryEntryService->findEntry($term);
-
-            if ($entry !== null) {
+            if ($entry instanceof GlossaryEntry) {
                 return $this->redirectToRoute('edit', [
                     'id' => $entry->getId()
                 ]);
             }
-
-            $this->addFlash(
-                'danger',
-                $translator->trans('flashmessage.entry.not.found', ['%term%' => $term])
-            );
+            $this->addFlashEntryNotFound($translator, $term);
         }
 
-        return $this->render('glossary/find_entry.html.twig', [
+        return $this->render('Glossary/find_entry.html.twig', [
             'find_entry' => $findEntryForm->createView()
         ]);
+    }
+
+    private function addFlashEntryNotFound(
+        TranslatorInterface $translator,
+        string $term
+    ): void {
+        $this->addFlash(
+            'danger',
+            $translator->trans(
+                'flashmessage.entry.not.found',
+                [
+                '%term%' => $term
+                ]
+            )
+        );
     }
 }

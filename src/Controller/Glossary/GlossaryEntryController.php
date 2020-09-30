@@ -7,6 +7,7 @@ use App\Form\Type\DeleteEntryType;
 use App\Form\Type\GlossaryEntryType;
 use App\Model\GlossaryEntryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -33,37 +34,47 @@ class GlossaryEntryController extends AbstractController
         $glossaryForm->handleRequest($request);
 
         if ($glossaryForm->isSubmitted() && $glossaryForm->isValid()) {
-
             if ($glossaryEntryService->insertEntry($glossaryEntry)) {
-                $this->addFlash(
-                    'success',
-                    $translator->trans(
-                        'flashmessage.entry.added', [
-                            '%term%' => $glossaryEntry->getTerm()
-                        ]
-                    )
-                );
+                $this->addFlashEntryAdded($translator, $glossaryEntry);
 
                     return $this->redirectToRoute('glossary');
             } else {
-                $this->addFlash(
-                    'danger',
-                    $translator->trans(
-                        'flashmessage.entry.already.existing', [
-                            '%term%' => $glossaryForm->getData()->getTerm()
-                        ]
-                    )
-                );
-
-                return $this->render('glossary/glossary.html.twig', [
-                    'glossary' => $glossaryForm->createView(),
-                ]);
+                $this->addFlashEntryAlreadyExisting($translator, $glossaryForm);
             }
-        } else {
-            return $this->render('glossary/glossary.html.twig', [
-                'glossary' => $glossaryForm->createView(),
-            ]);
         }
+        return $this->render('Glossary/glossary.html.twig', [
+            'glossary' => $glossaryForm->createView(),
+        ]);
+    }
+
+    private function addFlashEntryAdded(
+        TranslatorInterface $translator,
+        GlossaryEntry $glossaryEntry
+    ): void {
+        $this->addFlash(
+            'success',
+            $translator->trans(
+                'flashmessage.entry.added',
+                [
+                    '%term%' => $glossaryEntry->getTerm()
+                ]
+            )
+        );
+    }
+
+    private function addFlashEntryAlreadyExisting(
+        TranslatorInterface $translator,
+        FormInterface $glossaryForm
+    ): void {
+        $this->addFlash(
+            'danger',
+            $translator->trans(
+                'flashmessage.entry.already.existing',
+                [
+                    '%term%' => $glossaryForm->getData()->getTerm()
+                ]
+            )
+        );
     }
 
     /**
@@ -98,7 +109,7 @@ class GlossaryEntryController extends AbstractController
             }
         }
 
-        return $this->render('glossary/edit.html.twig', [
+        return $this->render('Glossary/edit.html.twig', [
             'glossary' => $glossaryForm->createView()
         ]);
     }
@@ -133,9 +144,9 @@ class GlossaryEntryController extends AbstractController
             }
         }
 
-        return $this->render('glossary/delete_entry.html.twig', [
+        return $this->render('Glossary/delete_entry.html.twig', [
             'delete_entry' => $deleteEntryForm->createView(),
             'glossary' => $glossaryEntry
         ]);
-     }
+    }
 }

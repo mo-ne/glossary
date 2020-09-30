@@ -15,7 +15,8 @@ class FindEntryType extends AbstractEntryType
         $builder
             ->add(
                 'term',
-                TextType::class, [
+                TextType::class,
+                [
                     'label' => $this->getTranslator()->trans('entry.term'),
                     'help' => $this->getTranslator()->trans('form.help.edit')
                 ]
