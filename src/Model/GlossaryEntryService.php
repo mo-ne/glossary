@@ -42,7 +42,7 @@ class GlossaryEntryService implements GlossaryEntryServiceInterface
     public function insertEntry(GlossaryEntry $glossaryEntry): bool
     {
         $existingEntry = $this->findEntry($glossaryEntry->getTerm());
-        if (!$existingEntry instanceof GlossaryEntry) {
+        if ($existingEntry === null) {
             $this->entityManager->persist($glossaryEntry);
             $this->entityManager->flush();
             return true;
