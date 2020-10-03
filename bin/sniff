@@ -1,0 +1,1 @@
+phpcs -p -s --standard=PSR12 /c/Programming/glossar/htdocs/glossary/src --extensions=php --colors --report-full=report.txt

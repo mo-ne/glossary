@@ -45,7 +45,7 @@ class GlossaryRepository extends ServiceEntityRepository
      */
     public function checkByTerm(string $term): bool
     {
-        return $this->findByTerm($term) !== null;
+        return $this->findByTerm($term) instanceof GlossaryEntry;
     }
 
     /**
@@ -56,7 +56,7 @@ class GlossaryRepository extends ServiceEntityRepository
     public function getAllEntries(): array
     {
         $query = $this->createQueryBuilder('g')
-            ->select('g.id', 'g.term', 'g.description', 'g.relevance')
+            ->select(['g.id', 'g.term', 'g.description', 'g.relevance'])
             ->getQuery();
 
         return $query->getResult();

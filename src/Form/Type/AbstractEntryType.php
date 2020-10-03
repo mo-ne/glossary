@@ -23,7 +23,7 @@ class AbstractEntryType extends AbstractType
         $this->translator = $translator;
     }
 
-    public function getTranslator()
+    public function getTranslator(): TranslatorInterface
     {
         return $this->translator;
     }

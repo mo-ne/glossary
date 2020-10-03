@@ -41,7 +41,8 @@ class GlossaryEntryService implements GlossaryEntryServiceInterface
      */
     public function insertEntry(GlossaryEntry $glossaryEntry): bool
     {
-        if ($this->findEntry($glossaryEntry->getTerm()) == null) {
+        $existingEntry = $this->findEntry($glossaryEntry->getTerm());
+        if ($existingEntry === null) {
             $this->entityManager->persist($glossaryEntry);
             $this->entityManager->flush();
             return true;
@@ -71,7 +72,8 @@ class GlossaryEntryService implements GlossaryEntryServiceInterface
      */
     public function updateEntry(GlossaryEntry $glossaryEntry): bool
     {
-        if ($this->findEntry($glossaryEntry->getTerm()) !== null) {
+        $existingEntry = $this->findEntry($glossaryEntry->getTerm());
+        if ($existingEntry instanceof GlossaryEntry) {
             $this->entityManager->persist($glossaryEntry);
             $this->entityManager->flush();
             return true;
@@ -89,7 +91,8 @@ class GlossaryEntryService implements GlossaryEntryServiceInterface
      */
     public function deleteEntry(GlossaryEntry $glossaryEntry): bool
     {
-        if ($this->findEntry($glossaryEntry->getTerm()) !== null) {
+        $existingEntry = $this->findEntry($glossaryEntry->getTerm());
+        if ($existingEntry instanceof GlossaryEntry) {
             $this->entityManager->remove($glossaryEntry);
             $this->entityManager->flush();
             return true;
