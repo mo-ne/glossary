@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Exporter{% endblock %}
+
+{% block body %}
+
+{% include('Glossary/navigation.html.twig') %}
+
+<div class="container">
+    <h1>{{ 'exporter.headline'|trans }}</h1>
+    <br>
+    <br>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a href="{{ path('csv_export') }}" class="btn btn-outline-secondary">
+                {{ 'exporter.button.csv'|trans }}
+            </a>
+        </li>
+        <li>
+            <br>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('xml_export') }}" class="btn btn-outline-secondary">
+                {{ 'exporter.button.xml'|trans }}
+            </a>
+        </li>
+    </ul>
+</div>
+
+{% endblock %}

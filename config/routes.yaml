@@ -10,14 +10,6 @@ glossary:
     path: /{_locale}/glossary
     controller: App\Controller\Glossary\GlossaryEntryController::createNewEntry
 
-#   export:
-#      path: /export
-#      controller: App\Controller\Glossary\ExportController::export
-
-#   import:
-#       path: /import
-#       controller: App\Controller\Glossary\ImportController::import
-
 find_entry:
     path: /{_locale}/find_entry
     controller: App\Controller\Glossary\FindEntryController::findEntry
@@ -33,3 +25,15 @@ delete:
 list:
     path: /{_locale}/list
     controller: App\Controller\Glossary\ListController::list
+
+xml_export:
+    path: /{_locale}/xml_export
+    controller: App\Controller\Exporter\ExportController::exportXml
+
+csv_export:
+    path: /{_locale}/csv_export
+    controller: App\Controller\Exporter\ExportController::exportCsv
+
+export:
+    path: /{_locale}/export
+    controller: App\Controller\Exporter\ExportController::export

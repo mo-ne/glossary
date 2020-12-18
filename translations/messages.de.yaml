@@ -25,6 +25,7 @@ dashboard:
     button.write.entry: Neuer Eintrag
     button.edit: Eintrag bearbeiten
     button.list: Liste aller Einträge
+    button.export: Einträge exportieren
 
 entry.page:
     headline: Glossar
@@ -41,7 +42,8 @@ edit.entry:
 delete.entry:
     headline: Eintrag löschen
     demand: Sicher, dass dieser Eintrag gelöscht werden soll?
-    button: Löschen!
+    button.delete: Löschen!
+    button.go.back: Doch nicht!!
 
 flashmessage:
     entry:
@@ -56,3 +58,8 @@ entry.list:
 
 form.help:
     edit: Suchbegriff eingeben
+
+exporter:
+    headline: Einträge exportieren
+    button.csv: CSV herunterladen
+    button.xml: XML herunterladen

@@ -25,6 +25,7 @@ dashboard:
     button.write.entry: Write a new entry!
     button.edit: Edit your entries
     button.list: Get a glossary list
+    button.export: Export glossary entries
 
 entry.page:
    headline: Glossary
@@ -41,7 +42,8 @@ edit.entry:
 delete.entry:
     headline: Delete Entry
     demand: Are you sure you want to delete the following entry?
-    button: Delete!
+    button.delete: Delete!
+    button.go.back: Changed my mind!!
 
 flashmessage:
     entry:
@@ -56,3 +58,8 @@ entry.list:
 
 form.help:
     edit: Enter the term you want to edit.
+
+exporter:
+    headline: Export your entries
+    button.csv: Download CSV
+    button.xml: Download XML
