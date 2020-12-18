@@ -105,6 +105,12 @@
     "felixfbecker/language-server-protocol": {
         "version": "v1.4.0"
     },
+    "jms/metadata": {
+        "version": "2.3.0"
+    },
+    "jms/serializer": {
+        "version": "3.10.0"
+    },
     "monolog/monolog": {
         "version": "1.25.5"
     },
